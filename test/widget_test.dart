@@ -11,20 +11,18 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:cw02/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('Recipe Book App smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const RecipeBookApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify that the app loads with recipe list
+    expect(find.text('Recipe Book'), findsOneWidget);
+    expect(find.text('Search recipes...'), findsOneWidget);
+    
+    // Verify some recipes are displayed
+    expect(find.text('Phở Bò (Beef Pho)'), findsOneWidget);
+    
+    // Verify favorites button is present
+    expect(find.byIcon(Icons.favorite), findsOneWidget);
   });
 }
